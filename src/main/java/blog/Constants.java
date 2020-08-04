@@ -1,0 +1,6 @@
+package blog;
+
+class Constants {
+
+
+}
