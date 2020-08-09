@@ -1,5 +1,7 @@
 package blog.controller;
 
+import blog.service.BusinessService;
+import blog.service.impl.ServiceManager;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import javax.servlet.ServletException;
@@ -8,17 +10,22 @@ import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
 
-
 public abstract class AbstractController extends HttpServlet {
     protected final Logger LOGGER = LoggerFactory.getLogger(getClass());
-
-    public final void forward_to_page (String JSPage, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        //currentPage mean "main content in site"
-        request.setAttribute("currentPage","page/" + JSPage);
-        //creating page from template and content
-        request.getRequestDispatcher("/WEB-INF/JSP/page-template.jsp").forward(request,response);
+    private BusinessService businessService;
+    public final BusinessService getBusinessService() {
+        return businessService;
     }
-    public final void forward_to_fragment (String JSPage, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        request.getRequestDispatcher("/WEB-INF/JSP/fragment/" + JSPage).forward(request,response);
+    @Override
+    public void init() throws ServletException {
+        businessService = ServiceManager.getInstance(getServletContext()).getBusinessService();
+    }
+    public final void forward_to_page (String jspPage, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.setAttribute("currentPage", "page/"+jspPage);
+        req.getRequestDispatcher("/WEB-INF/JSP/page-template.jsp").forward(req, resp);
+    }
+
+    public final void forward_to_fragment (String jspPage, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+        req.getRequestDispatcher("/WEB-INF/JSP/fragment/"+jspPage).forward(req, resp);
     }
 }
