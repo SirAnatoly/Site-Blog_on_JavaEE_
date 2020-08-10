@@ -4,7 +4,6 @@ package blog.service.impl;
 import java.sql.SQLException;
 import java.util.Properties;
 import javax.servlet.ServletContext;
-
 import blog.service.BusinessService;
 import blog.utill.AppUtil;
 import org.apache.commons.dbcp2.BasicDataSource;
