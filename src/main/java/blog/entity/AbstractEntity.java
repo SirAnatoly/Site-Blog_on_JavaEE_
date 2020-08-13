@@ -5,7 +5,7 @@ import blog.model.AbstractModel;
 import java.io.Serializable;
 import java.util.Objects;
 
-public class AbstractEntity<PK> extends AbstractModel implements Serializable {
+public abstract class AbstractEntity<PK> extends AbstractModel implements Serializable {
 
     private PK id;
 
