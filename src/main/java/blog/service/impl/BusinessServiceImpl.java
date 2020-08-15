@@ -1,8 +1,10 @@
 package blog.service.impl;
 
 import blog.dao.SQLDAO;
+import blog.entity.Article;
 import blog.entity.Category;
 import blog.exception.ApplicationException;
+import blog.model.Items;
 import blog.service.BusinessService;
 
 import javax.sql.DataSource;
@@ -28,4 +30,17 @@ public class BusinessServiceImpl implements BusinessService{
             throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
         }
     }
+
+    @Override
+    public Items<Article> listArticles(int offset, int limit) {
+        try (Connection c = dataSource.getConnection()) {
+            Items<Article> items = new Items<>();
+            items.setItems(sql.listArticles(c, offset, limit));
+            items.setCount(sql.countArticles(c));
+            return items;
+        } catch (SQLException e) {
+            throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+        }
+    }
+
 }
