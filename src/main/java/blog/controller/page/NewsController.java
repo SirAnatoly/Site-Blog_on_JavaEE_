@@ -3,6 +3,7 @@ package blog.controller.page;
 import blog.Constants;
 import blog.controller.AbstractController;
 import blog.entity.Article;
+import blog.entity.Category;
 import blog.model.Items;
 
 import javax.servlet.ServletException;
@@ -18,8 +19,14 @@ public class NewsController extends AbstractController {
         String requestUrl = req.getRequestURI();
         Items<Article> items = null;
         if(requestUrl.endsWith("/news") || requestUrl.endsWith("/news/")){
-            items = getBusinessService().listArticles(0, Constants.LIMIT_ARTICLES_PER_PAGE); }
-
+            items = getBusinessService().listArticles(0, Constants.LIMIT_ARTICLES_PER_PAGE);
+        }
+        else{
+            String categoryUrl = requestUrl.replace("/news", "");
+            items = getBusinessService().listArticlesByCategory(categoryUrl, 0, Constants.LIMIT_ARTICLES_PER_PAGE);
+            Category category = getBusinessService().findCategoryByUrl(categoryUrl);
+            req.setAttribute("selectedCategory", category);
+        }
         req.setAttribute("list", items.getItems());
         forward_to_page("news.jsp", req, resp);
     }

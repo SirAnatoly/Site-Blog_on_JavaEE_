@@ -81,9 +81,11 @@ public class Article extends AbstractEntity<Integer> {
     public void setViews(long views) {
         this.views = views;
     }
+
     public String getArticleLink(){
         return "/article/" + getId() + getUrl();
     }
+
     public String getShortTitle(){
         if(StringUtils.length(title) > 20) {
             return title.substring(0, 17)+"...";
@@ -91,5 +93,19 @@ public class Article extends AbstractEntity<Integer> {
         else{
             return title;
         }
+    }
+
+    @Override
+    public String toString() {
+        return "Article{" +
+                "title='" + title + '\'' +
+                ", url='" + url + '\'' +
+                ", logo='" + logo + '\'' +
+                ", desc='" + desc + '\'' +
+                ", idCategory=" + idCategory +
+                ", comments=" + comments +
+                ", created=" + created +
+                ", views=" + views +
+                '}';
     }
 }

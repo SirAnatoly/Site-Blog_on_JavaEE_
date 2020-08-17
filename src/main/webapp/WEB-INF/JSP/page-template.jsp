@@ -1,3 +1,4 @@
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <%@ page contentType="text/html;charset=UTF-8" language="java" pageEncoding="UTF-8" trimDirectiveWhitespaces="true" %>
 
 <!DOCTYPE html>
@@ -9,9 +10,9 @@
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
 
-    <link rel="stylesheet" type="text/css" href="static/css/foundation.css">
-    <link rel="stylesheet" type="text/css" href="static/css/foundation-icons.css">
-    <link rel="stylesheet" type="text/css" href="static/css/app.css">
+    <link rel="stylesheet" type="text/css" href="<c:url value="http://localhost:8080/Site_Blog_on_JavaEE_war/static/css/foundation.css"/>">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/Site_Blog_on_JavaEE_war/static/css/foundation-icons.css">
+    <link rel="stylesheet" type="text/css" href="http://localhost:8080/Site_Blog_on_JavaEE_war/static/css/app.css">
 </head>
 <body>
 <header>
@@ -40,9 +41,9 @@
 <footer class="footer">
     <jsp:include page="fragment/footer.jsp"/>
 </footer>
-<script src="static/js/jquery.js"></script>
-<script src="static/js/what-input.js"></script>
-<script src="static/js/foundation.js"></script>
-<script src="static/js/app.js"></script>
+<script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/jquery.js"></script>
+<script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/what-input.js"></script>
+<script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/foundation.js"></script>
+<script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/app.js"></script>
 </body>
 </html>

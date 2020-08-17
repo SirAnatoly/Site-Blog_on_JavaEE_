@@ -6,11 +6,11 @@
     <tr>
         <th style="width: 270px;">Categories</th>
     </tr>
-    <c:forEach var="categoryEntry" items="${CATEGORY_MAP }">
+        <c:forEach var="categoryEntry" items="${CATEGORY_MAP }">
         <c:set var="cat" value="${categoryEntry.value}" />
         <tr>
-            <td class="item">
-                <a href="/news${cat.url }">${cat.name} <span>(${cat.articles })</span></a>
+            <td class="${selectedCategory.id == categoryEntry.key ? 'selected ' : '' }item">
+                <a href="/Site_Blog_on_JavaEE_war/news${cat.url }">${cat.name} <span>(${cat.articles })</span></a>
             </td>
         </tr>
     </c:forEach>

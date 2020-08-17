@@ -20,12 +20,12 @@ public abstract class AbstractController extends HttpServlet {
     public void init() throws ServletException {
         businessService = ServiceManager.getInstance(getServletContext()).getBusinessService();
     }
-    public final void forward_to_page (String jspPage, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public final void forward_to_page(String jspPage, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("currentPage", "page/"+jspPage);
         req.getRequestDispatcher("/WEB-INF/JSP/page-template.jsp").forward(req, resp);
     }
 
-    public final void forward_to_fragment (String jspPage, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+    public final void forwardToFragment(String jspPage, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.getRequestDispatcher("/WEB-INF/JSP/fragment/"+jspPage).forward(req, resp);
     }
 }
