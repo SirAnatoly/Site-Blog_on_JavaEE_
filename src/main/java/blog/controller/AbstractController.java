@@ -20,6 +20,15 @@ public abstract class AbstractController extends HttpServlet {
     public void init() throws ServletException {
         businessService = ServiceManager.getInstance(getServletContext()).getBusinessService();
     }
+    public final int getOffset(HttpServletRequest req, int limit) {
+        String val = req.getParameter("page");
+        if (val != null) {
+            int page = Integer.parseInt(val);
+            return (page - 1) * limit;
+        } else {
+            return 0;
+        }
+    }
     public final void forward_to_page(String jspPage, HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         req.setAttribute("currentPage", "page/"+jspPage);
         req.getRequestDispatcher("/WEB-INF/JSP/page-template.jsp").forward(req, resp);
