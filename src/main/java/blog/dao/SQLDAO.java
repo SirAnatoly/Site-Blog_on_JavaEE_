@@ -50,4 +50,12 @@ public class SQLDAO {
         return new QueryRunner().query(c, "select count(a.id) from article a  where (a.title like ? or a.content like ?)",
                 new ScalarHandler<Number>(), q, q).intValue();
     }
+    public Article findArticleById(Connection c, long idArticle) throws SQLException {
+        return sql.query(c, "select * from article a where a.id = ?", new ArticleMapper(), idArticle);
+    }
+
+    public void updateArticleViews(Connection c, Article article) throws SQLException {
+        sql.update(c, "update article set views=? where id=?", article.getViews(), article.getId());
+    }
+
 }

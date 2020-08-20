@@ -4,6 +4,7 @@ import blog.dao.SQLDAO;
 import blog.entity.Article;
 import blog.entity.Category;
 import blog.exception.ApplicationException;
+import blog.exception.RedirectToValidUrlException;
 import blog.model.Items;
 import blog.service.BusinessService;
 
@@ -75,4 +76,25 @@ public class BusinessServiceImpl implements BusinessService{
         }
     }
 
+    @Override
+    public Article viewArticle(Integer idArticle, String requestUrl) throws RedirectToValidUrlException {
+
+        try (Connection c = dataSource.getConnection()) {
+            Article article = sql.findArticleById(c, idArticle);
+            if (article == null) {
+                return null;
+            }
+            if (!article.getArticleLink().substring(24).equals(requestUrl.replace('%',' '))) {
+
+                throw new RedirectToValidUrlException(article.getArticleLink());
+            } else {
+                article.setViews(article.getViews() + 1);
+                sql.updateArticleViews(c, article);
+                c.commit();
+                return article;
+            }
+        } catch (SQLException e) {
+            throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
+        }
+    }
 }

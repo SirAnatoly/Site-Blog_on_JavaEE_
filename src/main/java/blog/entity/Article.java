@@ -8,7 +8,7 @@ public class Article extends AbstractEntity<Integer> {
     private String title,url,logo,desc,content;
     private int idCategory,comments;
     private Timestamp created;
-    private long views;
+    private int views;
 
     public String getTitle() {
         return title;
@@ -42,7 +42,7 @@ public class Article extends AbstractEntity<Integer> {
         return created;
     }
 
-    public long getViews() {
+    public int getViews() {
         return views;
     }
 
@@ -78,12 +78,12 @@ public class Article extends AbstractEntity<Integer> {
         this.created = created;
     }
 
-    public void setViews(long views) {
+    public void setViews(int views) {
         this.views = views;
     }
 
     public String getArticleLink(){
-        return "/article/" + getId() + getUrl();
+        return "/Site_Blog_on_JavaEE_war/article/" + getId() + getUrl();
     }
 
     public String getShortTitle(){
@@ -94,7 +94,6 @@ public class Article extends AbstractEntity<Integer> {
             return title;
         }
     }
-
     @Override
     public String toString() {
         return "Article{" +

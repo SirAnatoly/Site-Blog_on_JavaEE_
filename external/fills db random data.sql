@@ -72,3 +72,24 @@ INSERT INTO `Blog`.`comment` (`id`, `id_account`, `id_article`, `content`, `crea
 INSERT INTO `Blog`.`comment` (`id`, `id_account`, `id_article`, `content`, `created`) VALUES ('8', '8', '16', '<p>Theirs expect dinner it pretty indeed having no of. Principle september she conveying did eat may extensive. </p>', '2018-07-14 12:39:05');
 INSERT INTO `Blog`.`comment` (`id`, `id_account`, `id_article`, `content`, `created`) VALUES ('9', '9', '18', '<p>Remain valley who mrs uneasy remove wooded him you. Her questions favourite him concealed. We to wife face took he. The taste begin early old why since dried can first.</p>', '2018-07-15 12:39:05');
 INSERT INTO `Blog`.`comment` (`id`, `id_account`, `id_article`, `content`, `created`) VALUES ('10', '10', '20', '<p>Prepared as or humoured formerly. Evil mrs true get post. Express village evening prudent my as ye hundred forming. Thoughts she why not directly reserved packages you. Winter an silent favour of am tended mutual.</p>', '2018-07-16 12:39:05');
+
+UPDATE `Blog`.`article` SET `url` = '/Down_For_The_Count' WHERE (`id` = '1');
+UPDATE `Blog`.`article` SET `url` = '/Cry_Over_Spilt_Milk' WHERE (`id` = '2');
+UPDATE `Blog`.`article` SET `url` = '/Talk_the_Talk' WHERE (`id` = '3');
+UPDATE `Blog`.`article` SET `url` = '/Happy_as_a_Clam' WHERE (`id` = '4');
+UPDATE `Blog`.`article` SET `url` = '/Short_End_of_the_Stick_Short_End_of_the_Stick' WHERE (`id` = '5');
+UPDATE `Blog`.`article` SET `url` = '/Swinging_For_the_Fences' WHERE (`id` = '6');
+UPDATE `Blog`.`article` SET `url` = '/An_Arm_and_a_Leg' WHERE (`id` = '7');
+UPDATE `Blog`.`article` SET `url` = '/Every_Cloud_Has_a_Silver_Lining' WHERE (`id` = '8');
+UPDATE `Blog`.`article` SET `url` = '/Hit_Below_The_Belt' WHERE (`id` = '9');
+UPDATE `Blog`.`article` SET `url` = '/Quick_On_the_Draw' WHERE (`id` = '10');
+UPDATE `Blog`.`article` SET `url` = '/Money_Doesnt_Grow_On_Trees' WHERE (`id` = '11');
+UPDATE `Blog`.`article` SET `url` = '/Goody_Two-Shoes' WHERE (`id` = '12');
+UPDATE `Blog`.`article` SET `url` = '/Plot_Thickens_The' WHERE (`id` = '13');
+UPDATE `Blog`.`article` SET `url` = '/A_Piece_of_Cake' WHERE (`id` = '14');
+UPDATE `Blog`.`article` SET `url` = '/Back_To_the_Drawing_Board' WHERE (`id` = '15');
+UPDATE `Blog`.`article` SET `url` = '/Right_Off_the_Bat' WHERE (`id` = '16');
+UPDATE `Blog`.`article` SET `url` = '/A_Fool_and_His_Money_are_Soon_Parted' WHERE (`id` = '17');
+UPDATE `Blog`.`article` SET `url` = '/Quick_and_Dirty' WHERE (`id` = '18');
+UPDATE `Blog`.`article` SET `url` = '/Jack_of_All_Trades_Master_of_None' WHERE (`id` = '19');
+UPDATE `Blog`.`article` SET `url` = '/Knock_Your_Socks_Off' WHERE (`id` = '20');
