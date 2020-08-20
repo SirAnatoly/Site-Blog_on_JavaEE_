@@ -15,9 +15,15 @@ public interface BusinessService {
 
     Items<Article> listArticlesByCategory(String categoryUrl, int offset, int limit);
 
+    /**
+     * @return NULL if entity not found
+     */
     Category findCategoryByUrl(String categoryUrl);
 
     Items<Article> listArticlesBySearchQuery(String searchQuery, int offset, int limit);
 
+    /**
+     * @return NULL if entity not found by idArticle
+     */
     Article viewArticle(Integer idArticle, String requestUrl) throws RedirectToValidUrlException;
 }

@@ -16,10 +16,11 @@ public class ArticleController extends AbstractController {
 
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
+
+        String requestUrl = req.getRequestURI().substring(24);
+
+
         try {
-
-            String requestUrl = req.getRequestURI().substring(24);
-
             String id = StringUtils.split(requestUrl, "/")[1];
             System.out.println(Integer.parseInt(id));
             Article article = getBusinessService().viewArticle(Integer.parseInt(id), requestUrl);
@@ -37,7 +38,7 @@ public class ArticleController extends AbstractController {
             resp.sendRedirect(e.getUrl());
 
         }  catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            resp.sendRedirect("/Site_Blog_on_JavaEE_war/news");
+            resp.sendRedirect("http://localhost:8080/Site_Blog_on_JavaEE_war/error");
         }
     }
 }
