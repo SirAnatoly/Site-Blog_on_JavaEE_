@@ -1,7 +1,9 @@
 package blog.controller.page;
 
+import blog.Constants;
 import blog.controller.AbstractController;
 import blog.entity.Article;
+import blog.entity.Comment;
 import blog.exception.RedirectToValidUrlException;
 import org.apache.commons.lang3.StringUtils;
 
@@ -10,6 +12,7 @@ import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import java.io.IOException;
+import java.util.List;
 
 @WebServlet("/article/*")
 public class ArticleController extends AbstractController {
@@ -22,7 +25,6 @@ public class ArticleController extends AbstractController {
 
         try {
             String id = StringUtils.split(requestUrl, "/")[1];
-            System.out.println(Integer.parseInt(id));
             Article article = getBusinessService().viewArticle(Integer.parseInt(id), requestUrl);
 
 
@@ -31,6 +33,9 @@ public class ArticleController extends AbstractController {
             }
             else{
                 req.setAttribute("article", article);
+                List<Comment> comments = getBusinessService().listComments(article.getId(), 0, Constants.LIMIT_COMMENTS_PER_PAGE);
+
+                req.setAttribute("comments", comments);
                 forward_to_page("article.jsp", req, resp);
             }
         }  catch (RedirectToValidUrlException e) {

@@ -8,7 +8,9 @@ public class Comment extends AbstractEntity<Integer> {
     private Account account;
     private String content;
     private Timestamp created;
-
+    public Comment() {
+        super();
+    }
     public Comment(Long idArticle, Account account, String content, Timestamp created) {
         super();
         this.idArticle = idArticle;

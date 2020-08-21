@@ -2,9 +2,11 @@ package blog.service;
 
 import blog.entity.Article;
 import blog.entity.Category;
+import blog.entity.Comment;
 import blog.exception.RedirectToValidUrlException;
 import blog.model.Items;
 
+import java.util.List;
 import java.util.Map;
 
 public interface BusinessService {
@@ -26,4 +28,6 @@ public interface BusinessService {
      * @return NULL if entity not found by idArticle
      */
     Article viewArticle(Integer idArticle, String requestUrl) throws RedirectToValidUrlException;
+
+    List<Comment> listComments(int id_article, int offset, int limit);
 }

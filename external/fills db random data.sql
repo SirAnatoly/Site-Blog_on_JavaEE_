@@ -93,3 +93,9 @@ UPDATE `Blog`.`article` SET `url` = '/A_Fool_and_His_Money_are_Soon_Parted' WHER
 UPDATE `Blog`.`article` SET `url` = '/Quick_and_Dirty' WHERE (`id` = '18');
 UPDATE `Blog`.`article` SET `url` = '/Jack_of_All_Trades_Master_of_None' WHERE (`id` = '19');
 UPDATE `Blog`.`article` SET `url` = '/Knock_Your_Socks_Off' WHERE (`id` = '20');
+
+UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '3');
+UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '5');
+UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '7');
+UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '9');
+UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '1');
