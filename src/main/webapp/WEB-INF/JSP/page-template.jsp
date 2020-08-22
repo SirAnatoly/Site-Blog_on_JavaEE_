@@ -44,6 +44,6 @@
 <script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/jquery.js"></script>
 <script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/what-input.js"></script>
 <script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/foundation.js"></script>
-<script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/app.js"></script>
+<script src="<c:url value="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/app.js"/>"></script>
 </body>
 </html>
