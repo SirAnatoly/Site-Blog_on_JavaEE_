@@ -2,6 +2,9 @@
 <%@ taglib prefix="c" 	  		uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" 	  	uri="http://java.sun.com/jsp/jstl/fmt"%>
 <%@ taglib prefix="fn" 	  		uri="http://java.sun.com/jsp/jstl/functions"%>
+
+<script src="https://apis.google.com/js/platform.js" async defer></script>
+
 <div class="article thumbnail">
     <c:set var="category" value="${CATEGORY_MAP[article.idCategory] }" />
     <img src="/Site_Blog_on_JavaEE_war${article.logo }" alt="${article.title }" />
@@ -9,7 +12,7 @@
         <%-- ----------------------------------------- Article content ----------------------------------------- --%>
         <h3>${article.title }</h3>
         <ul class="vertical large-horizontal menu">
-            <li><i class="fi-folder"></i><a href="/news${category.url}">${category.name }</a></li>
+            <li><i class="fi-folder"></i><a href="/Site_Blog_on_JavaEE_war/news${category.url}">${category.name }</a></li>
             <li><i class="fi-comments"></i><fmt:formatNumber value="${article.comments }" /> comments</li>
             <li><i class="fi-clock"></i><fmt:formatDate value="${article.created }" dateStyle="FULL" timeStyle="SHORT" type="both" /></li>
             <li><i class="fi-eye"></i>Hits: <fmt:formatNumber value="${article.views }" /></li>
@@ -36,8 +39,8 @@
 
                     <script>
                         function moreComments() {
-                            var offset = $('#comments-list-container .comment-item').length;
-                            var idArticle = $('#comments-list-container').attr('data-id-article');
+                            let offset = $('#comments-list-container .comment-item').length;
+                            let idArticle = $('#comments-list-container').attr('data-id-article');
                             $('#comments-load-more-ctrl .load-more-btn').css('display', 'none');
                             $('#comments-load-more-ctrl .loading-indicator').css('display', 'block');
                             $.ajax({
@@ -45,8 +48,8 @@
                                 success : function(data) {
                                     $('#comments-load-more-ctrl .loading-indicator').css('display', 'none');
                                     $('#comments-list-container').append(data);
-                                    var actualTotal = $('#comments-list-container .comment-item').length;
-                                    var expectedTotal = $('#comments-list-container').attr('data-comments-count');
+                                    let actualTotal = $('#comments-list-container .comment-item').length;
+                                    let expectedTotal = $('#comments-list-container').attr('data-comments-count');
                                     if (actualTotal == expectedTotal) {
                                         $('#comments-load-more-ctrl .load-more-btn').css('display', 'none');
                                     } else {
@@ -57,6 +60,37 @@
                                     alert('Error. Please try again later...');
                                 }
                             });
+                        }
+
+                        // ------------------------ Google plus integration ------------------------
+                        let googleProfile = null;
+
+                        function submitComment() {
+                            if (googleProfile == null) {
+                                $('#sigin-form').foundation('open');
+                            } else {
+                                //TODO submit new comment logic
+                            }
+                        }
+
+                        function onSignIn(googleUser) {
+                            googleProfile = googleUser.getBasicProfile();
+                            googleProfile.authToken = googleUser.getAuthResponse().id_token;
+                            $('#sigin-form').foundation('close');
+                            if (googleProfile.getImageUrl() != null) {
+                                $('#new-comment-container img').attr('src', googleProfile.getImageUrl());
+                            }
+                            $('#new-comment-container img').attr('alt', googleProfile.getName());
+                            $('#new-comment-container a.logout').css('display', 'block');
+                        }
+
+                        function gpLogout() {
+                            let auth2 = gapi.auth2.getAuthInstance();
+                            auth2.signOut();
+                            googleProfile = null;
+                            $('#new-comment-container a.logout').css('display', 'none');
+                            $('#new-comment-container img').attr('src', '/Site_Blog_on_JavaEE_war/static/img/no_avatar.png');
+                            $('#new-comment-container img').attr('alt', messages.anonym);
                         }
                     </script>
 

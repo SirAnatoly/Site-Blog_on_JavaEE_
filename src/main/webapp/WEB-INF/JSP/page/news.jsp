@@ -11,7 +11,7 @@
         <div class="data">
             <h3><a href="${article.articleLink }">${article.title }</a></h3>
             <ul class="vertical large-horizontal menu">
-                <li><i class="fi-folder"></i><a href="/news${category.url}">${category.name }</a></li>
+                <li><i class="fi-folder"></i><a href="/Site_Blog_on_JavaEE_war/news${category.url}">${category.name }</a></li>
                 <li><i class="fi-comments"></i><fmt:formatNumber value="${article.comments }"/> comments</li>
                 <li><i class="fi-clock"></i><fmt:formatDate value="${article.created }" dateStyle="FULL"  timeStyle="SHORT" type="both"/></li>
                 <li><i class="fi-eye"></i>Hits: <fmt:formatNumber value="${article.views }"/></li>

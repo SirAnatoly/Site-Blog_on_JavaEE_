@@ -9,10 +9,13 @@
     <meta charset="utf-8">
     <meta http-equiv="x-ua-compatible" content="ie=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="stylesheet" type="text/css" href="/Site_Blog_on_JavaEE_war/static/css/foundation.css">
+    <link rel="stylesheet" type="text/css" href="/Site_Blog_on_JavaEE_war/static/css/foundation-icons.css">
+    <link rel="stylesheet" type="text/css" href="/Site_Blog_on_JavaEE_war/static/css/app.css">
 
-    <link rel="stylesheet" type="text/css" href="<c:url value="http://localhost:8080/Site_Blog_on_JavaEE_war/static/css/foundation.css"/>">
-    <link rel="stylesheet" type="text/css" href="http://localhost:8080/Site_Blog_on_JavaEE_war/static/css/foundation-icons.css">
-    <link rel="stylesheet" type="text/css" href="http://localhost:8080/Site_Blog_on_JavaEE_war/static/css/app.css">
+    <meta name="google-signin-scope" content="profile email">
+    <meta name="google-signin-client_id" content="299849943590-v2itenkjumc8hg4tvcr5aer8jiph1cfi.apps.googleusercontent.com">
+
 </head>
 <body>
 <header>
@@ -41,9 +44,12 @@
 <footer class="footer">
     <jsp:include page="fragment/footer.jsp"/>
 </footer>
-<script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/jquery.js"></script>
-<script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/what-input.js"></script>
-<script src="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/foundation.js"></script>
-<script src="<c:url value="http://localhost:8080/Site_Blog_on_JavaEE_war/static/js/app.js"/>"></script>
+
+
+<script src="/Site_Blog_on_JavaEE_war/static/js/jquery.js"></script>
+<script src="/Site_Blog_on_JavaEE_war/static/js/what-input.js"></script>
+<script src="/Site_Blog_on_JavaEE_war/static/js/foundation.js"></script>
+<script src="/Site_Blog_on_JavaEE_war/static/js/messages.jsp"></script>
+<script src="/Site_Blog_on_JavaEE_war/static/js/app.js"></script>
 </body>
 </html>
