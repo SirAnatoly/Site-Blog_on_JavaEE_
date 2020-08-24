@@ -69,7 +69,34 @@
                             if (googleProfile == null) {
                                 $('#sigin-form').foundation('open');
                             } else {
-                                //TODO submit new comment logic
+                                var authToken = googleProfile.authToken;
+                                var idArticle = $('#comments-list-container').attr('data-id-article');
+                                var content = $('#new-comment-container textarea').val();
+                                if (content.trim() != '') {
+                                    $('#comment-content').parent().find('.form-error').css('display', 'none');
+                                    $('#new-comment-container textarea').val('');
+                                    $('#new-comment-loading img').css('display', 'block');
+                                    $.ajax({
+                                        url : '/Site_Blog_on_JavaEE_war/ajax/comment',
+                                        method : 'post',
+                                        data : {
+                                            idArticle : idArticle,
+                                            authToken : authToken,
+                                            content : content
+                                        },
+                                        success : function(data) {
+                                            $('#new-comment-loading img').css('display', 'none');
+                                            $('#comments-list-container').prepend(data);
+                                        },
+                                        error : function(data) {
+                                            alert(messages.errorAjax);
+                                        }
+                                    });
+                                }
+                                else{
+                                    $('#comment-content').parent().find('.form-error').css('display', 'inline');
+                                    $('#new-comment-container textarea').val('');
+                                }
                             }
                         }
 

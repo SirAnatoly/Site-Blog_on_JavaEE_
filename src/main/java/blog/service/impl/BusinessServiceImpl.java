@@ -3,16 +3,19 @@ package blog.service.impl;
 import blog.dao.SQLDAO;
 import blog.dao.mapper.CommentMapper;
 import blog.dao.mapper.ListMapper;
+import blog.entity.Account;
 import blog.entity.Article;
 import blog.entity.Category;
 import blog.entity.Comment;
 import blog.exception.ApplicationException;
 import blog.exception.RedirectToValidUrlException;
+import blog.form.CommentForm;
 import blog.model.Items;
 import blog.service.BusinessService;
 import javax.sql.DataSource;
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.sql.Timestamp;
 import java.util.List;
 import java.util.Map;
 
@@ -109,4 +112,16 @@ public class BusinessServiceImpl implements BusinessService{
                 throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }
+
+    @Override
+    public Comment createComment(CommentForm form) {
+        Comment c = new Comment();
+        c.setId(0);
+        c.setContent("Test content");
+        c.setCreated(new Timestamp(System.currentTimeMillis()));
+        Account a = new Account();
+        a.setName("test_account");
+        c.setAccount(a);
+        return c;
+    }
 }
