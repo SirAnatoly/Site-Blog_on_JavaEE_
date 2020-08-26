@@ -12,6 +12,7 @@ import blog.model.Items;
 import blog.model.SocialAccount;
 import blog.service.AvatarService;
 import blog.service.BusinessService;
+import blog.service.NotificationService;
 import blog.service.SocialService;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -22,13 +23,16 @@ import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.util.List;
+import java.util.Locale;
 import java.util.Map;
 
 public class BusinessServiceImpl implements BusinessService{
+    private final String appHost;
     private final DataSource dataSource;
     private final SQLDAO sql;
     private final SocialService socialService;
     private final AvatarService avatarService;
+    private final NotificationService notificationService;
     private static final Logger LOGGER = LoggerFactory.getLogger(BusinessServiceImpl.class);
 
     BusinessServiceImpl(ServiceManager serviceManager) {
@@ -37,6 +41,8 @@ public class BusinessServiceImpl implements BusinessService{
         this.sql = new SQLDAO();
         this.avatarService = serviceManager.avatarService;
         this.socialService = serviceManager.socialService;
+        this.notificationService = serviceManager.notificationService;
+        this.appHost = serviceManager.getApplicationProperty("app.host");
     }
 
     @Override
@@ -140,8 +146,7 @@ public class BusinessServiceImpl implements BusinessService{
             article.setComments(sql.countComments(c, article.getId()));
             sql.updateArticleComments(c, article);
             c.commit();
-            // after commit
-            //TODO Send new comment notification
+            sendNewCommentNotification(article, form.getContent());
             return comment;
         } catch (SQLException | RuntimeException | IOException e) {
             if(avatarService.deleteAvatarIfExists(newAvatarPath)){
@@ -150,4 +155,10 @@ public class BusinessServiceImpl implements BusinessService{
             throw new ApplicationException("Can't create new comment: " + e.getMessage(), e);
         }
     }
+    private void sendNewCommentNotification(Article article, String commentContent) {
+        String title = article.getTitle();
+        String content = commentContent;
+        notificationService.sendNotification(title, content);
+    }
+
 }

@@ -7,6 +7,7 @@ import javax.servlet.ServletContext;
 
 import blog.service.AvatarService;
 import blog.service.BusinessService;
+import blog.service.NotificationService;
 import blog.service.SocialService;
 import blog.utill.AppUtil;
 import org.apache.commons.dbcp2.BasicDataSource;
@@ -37,6 +38,7 @@ public class ServiceManager {
     }
 
     public String getApplicationProperty(String property) {
+
         return applicationProperties.getProperty(property);
     }
 
@@ -48,12 +50,14 @@ public class ServiceManager {
     final BasicDataSource dataSource;
     final SocialService socialService;
     final AvatarService avatarService;
+    final NotificationService notificationService;
 
 
     final BusinessService businessService;
     private ServiceManager(ServletContext context) {
         applicationContext = context;
         AppUtil.loadProperties(applicationProperties, "application.properties");
+        notificationService = new AsyncEmailNotificationService(this);
         socialService = new GooglePlusSocialService(this);
         avatarService = new FileStorageAvatarService(this);
         dataSource = createBasicDataSource();
