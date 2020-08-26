@@ -4,15 +4,18 @@ import blog.dao.mapper.ArticleMapper;
 import blog.dao.mapper.CommentMapper;
 import blog.dao.mapper.ListMapper;
 import blog.dao.mapper.MapCategoryMapper;
+import blog.entity.Account;
 import blog.entity.Article;
 import blog.entity.Category;
 import blog.entity.Comment;
+import blog.form.CommentForm;
 import org.apache.commons.dbutils.QueryRunner;
 import org.apache.commons.dbutils.handlers.BeanHandler;
 import org.apache.commons.dbutils.handlers.ScalarHandler;
 
 import java.sql.Connection;
 import java.sql.SQLException;
+import java.util.Collections;
 import java.util.List;
 import java.util.Map;
 
@@ -66,4 +69,37 @@ public class SQLDAO {
                         "where a.id = c.id_account and c.id_article = ? order by c.id desc limit ? offset ?",
                 new ListMapper<>(new CommentMapper(true)), id_article, limit, offset);
     }
+
+    public Article findArticleForNewCommentNotification(Connection c, long id) throws SQLException {
+        return sql.query(c, "select a.id, a.id_category, a.url, a.title from article a where a.id = ?", new ArticleMapper(), id);
+    }
+
+    public Account findAccountByEmail(Connection c, String email) throws SQLException {
+        return sql.query(c, "select * from account a where a.email = ?", new BeanHandler<>(Account.class), email);
+    }
+
+    public int countComments(Connection c, long id) throws SQLException {
+        return sql.query(c, "select count(*) from comment where id_article=?", new ScalarHandler<Number>(), id).intValue();
+    }
+
+    public void updateArticleComments(Connection c, Article article) throws SQLException {
+        sql.update(c, "update article set comments=? where id=?", article.getComments(), article.getId());
+    }
+
+
+    public Account createNewAccount(Connection c, String email, String name, String avatar) throws SQLException {
+        return sql.insert(c, "insert account(email,name,avatar) values( ? , ? , ? )",
+                new BeanHandler<>(Account.class), email, name, avatar);
+    }
+
+    public Comment createComment(Connection c, CommentForm form, int idAccount) throws SQLException {
+        return sql.insert(c, "insert comment(id_article,id_account,content) values( ? , ? , ? )",
+                new CommentMapper(false,false), form.getIdArticle(), idAccount, "<p>"+form.getContent()+"</p>");
+    }
+
+    public int id_account(Connection c) throws SQLException {
+        return sql.query(c, "select max(id) from account;",new ScalarHandler<Number>()).intValue() ;
+    }
+
+
 }

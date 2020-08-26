@@ -4,7 +4,10 @@ package blog.service.impl;
 import java.sql.SQLException;
 import java.util.Properties;
 import javax.servlet.ServletContext;
+
+import blog.service.AvatarService;
 import blog.service.BusinessService;
+import blog.service.SocialService;
 import blog.utill.AppUtil;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
@@ -43,10 +46,16 @@ public class ServiceManager {
     final Properties applicationProperties = new Properties();
     final ServletContext applicationContext;
     final BasicDataSource dataSource;
+    final SocialService socialService;
+    final AvatarService avatarService;
+
+
     final BusinessService businessService;
     private ServiceManager(ServletContext context) {
         applicationContext = context;
         AppUtil.loadProperties(applicationProperties, "application.properties");
+        socialService = new GooglePlusSocialService(this);
+        avatarService = new FileStorageAvatarService(this);
         dataSource = createBasicDataSource();
         businessService = new BusinessServiceImpl(this);
         LOGGER.info("ServiceManager instance created");

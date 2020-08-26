@@ -23,4 +23,12 @@ public final class SocialAccount extends AbstractModel{
         return avatar;
     }
 
+    @Override
+    public String toString() {
+        return "SocialAccount{" +
+                "name='" + name + '\'' +
+                ", email='" + email + '\'' +
+                ", avatar='" + avatar + '\'' +
+                '}';
+    }
 }

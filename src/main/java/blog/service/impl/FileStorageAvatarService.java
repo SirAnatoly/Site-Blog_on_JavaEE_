@@ -46,7 +46,7 @@ public class FileStorageAvatarService implements AvatarService {
     public String downloadAvatar(String url) throws IOException {
         if(url != null) {
             String uid = UUID.randomUUID().toString() + ".jpg";
-            String fullImgPath = mediaDirParent + MEDIA_AVATAR_PREFFIX + uid;
+            String fullImgPath = mediaDirParent+ MEDIA_AVATAR_PREFFIX + uid;
             downloadImageFromUrl(url, fullImgPath);
             Thumbnails.of(new File(fullImgPath)).size(AVATAR_SIZE_IN_PX, AVATAR_SIZE_IN_PX).toFile(new File(fullImgPath));
             return MEDIA_AVATAR_PREFFIX + uid;

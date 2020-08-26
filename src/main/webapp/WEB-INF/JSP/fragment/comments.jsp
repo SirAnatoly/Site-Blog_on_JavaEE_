@@ -2,16 +2,6 @@
 <%@ taglib prefix="c" 	  		uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" 	  	uri="http://java.sun.com/jsp/jstl/fmt"%>
 
-<script>
-    function reply(name) {
-        $('#new-comment-container textarea').val(name + ', ');
-        $('#new-comment-container textarea').focus();
-        $('html, body').animate({
-            scrollTop: $('#new-comment-container textarea').offset().top
-        }, 2000);
-    }
-</script>
-
 <c:forEach var="comment" items="${comments }">
     <div class="media-object comment-item" data-id-comment="${comment.id}">
         <div class="media-object-section">

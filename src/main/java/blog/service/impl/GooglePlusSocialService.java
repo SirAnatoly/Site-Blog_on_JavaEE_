@@ -32,7 +32,7 @@ class GooglePlusSocialService implements SocialService {
             GoogleIdToken idToken = verifier.verify(authToken);
             if (idToken != null) {
                 GoogleIdToken.Payload payload = idToken.getPayload();
-                return new SocialAccount(payload.getEmail(), (String)payload.get("given_name"), (String)payload.get("picture"));
+                return new SocialAccount((String)payload.get("given_name"),payload.getEmail(), (String)payload.get("picture"));
             } else {
                 throw new ApplicationException("Can't get account by authToken: "+authToken);
             }

@@ -99,3 +99,11 @@ UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '5');
 UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '7');
 UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '9');
 UPDATE `Blog`.`account` SET `avatar` = NULL WHERE (`id` = '1');
+
+ALTER TABLE `Blog`.`comment`
+    DROP FOREIGN KEY `id_article_fk`,
+    DROP FOREIGN KEY `id_account_fk`;
+ALTER TABLE `Blog`.`comment`
+    DROP INDEX `id_article_fk_idx` ,
+    DROP INDEX `id_account_fk_idx` ;
+;

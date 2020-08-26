@@ -4,24 +4,24 @@ import java.sql.Timestamp;
 
 public class Comment extends AbstractEntity<Integer> {
 
-    private Long idArticle;
+    private Integer idArticle;
     private Account account;
     private String content;
     private Timestamp created;
     public Comment() {
         super();
     }
-    public Comment(Long idArticle, Account account, String content, Timestamp created) {
+    public Comment(Integer idArticle, Account account, String content, Timestamp created) {
         super();
         this.idArticle = idArticle;
         this.account = account;
         this.content = content;
         this.created = created;
     }
-    public Long getIdArticle() {
+    public Integer getIdArticle() {
         return idArticle;
     }
-    public void setIdArticle(Long idArticle) {
+    public void setIdArticle(Integer idArticle) {
         this.idArticle = idArticle;
     }
     public Account getAccount() {

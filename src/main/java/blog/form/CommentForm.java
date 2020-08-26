@@ -2,11 +2,11 @@ package blog.form;
 
 public class CommentForm {
 
-    private Long idArticle;
+    private Integer idArticle;
     private String content;
     private String authToken;
 
-    public void setIdArticle(Long idArticle) {
+    public void setIdArticle(Integer idArticle) {
         this.idArticle = idArticle;
     }
 
@@ -22,11 +22,19 @@ public class CommentForm {
         return content;
     }
 
-    public Long getIdArticle() {
+    public Integer getIdArticle() {
         return idArticle;
     }
 
     public String getAuthToken() {
         return authToken;
+    }
+
+    @Override
+    public String toString() {
+        return "CommentForm{" +
+                "idArticle=" + idArticle +
+                ", content='" + content + '\'' +
+                '}';
     }
 }

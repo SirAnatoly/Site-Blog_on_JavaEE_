@@ -1,8 +1,6 @@
 package blog.service.impl;
 
 import blog.dao.SQLDAO;
-import blog.dao.mapper.CommentMapper;
-import blog.dao.mapper.ListMapper;
 import blog.entity.Account;
 import blog.entity.Article;
 import blog.entity.Category;
@@ -11,8 +9,15 @@ import blog.exception.ApplicationException;
 import blog.exception.RedirectToValidUrlException;
 import blog.form.CommentForm;
 import blog.model.Items;
+import blog.model.SocialAccount;
+import blog.service.AvatarService;
 import blog.service.BusinessService;
+import blog.service.SocialService;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+
 import javax.sql.DataSource;
+import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
 import java.sql.Timestamp;
@@ -22,11 +27,16 @@ import java.util.Map;
 public class BusinessServiceImpl implements BusinessService{
     private final DataSource dataSource;
     private final SQLDAO sql;
+    private final SocialService socialService;
+    private final AvatarService avatarService;
+    private static final Logger LOGGER = LoggerFactory.getLogger(BusinessServiceImpl.class);
 
     BusinessServiceImpl(ServiceManager serviceManager) {
         super();
         this.dataSource = serviceManager.dataSource;
         this.sql = new SQLDAO();
+        this.avatarService = serviceManager.avatarService;
+        this.socialService = serviceManager.socialService;
     }
 
     @Override
@@ -112,16 +122,32 @@ public class BusinessServiceImpl implements BusinessService{
                 throw new ApplicationException("Can't execute db command: " + e.getMessage(), e);
             }
         }
-
     @Override
     public Comment createComment(CommentForm form) {
-        Comment c = new Comment();
-        c.setId(0);
-        c.setContent("Test content");
-        c.setCreated(new Timestamp(System.currentTimeMillis()));
-        Account a = new Account();
-        a.setName("test_account");
-        c.setAccount(a);
-        return c;
+
+        String newAvatarPath = null;
+        try (Connection c = dataSource.getConnection()) {
+            SocialAccount socialAccount = socialService.getSocialAccount(form.getAuthToken());
+            Account account = sql.findAccountByEmail(c, socialAccount.getEmail());
+            if (account == null) {
+                newAvatarPath = avatarService.downloadAvatar(socialAccount.getAvatar());
+                account = sql.createNewAccount(c, socialAccount.getEmail(), socialAccount.getName(), newAvatarPath);
+            }
+            account.setId(sql.id_account(c));
+            Comment comment = sql.createComment(c, form, account.getId());
+            comment.setAccount(account);
+            Article article = sql.findArticleForNewCommentNotification(c, form.getIdArticle());
+            article.setComments(sql.countComments(c, article.getId()));
+            sql.updateArticleComments(c, article);
+            c.commit();
+            // after commit
+            //TODO Send new comment notification
+            return comment;
+        } catch (SQLException | RuntimeException | IOException e) {
+            if(avatarService.deleteAvatarIfExists(newAvatarPath)){
+                LOGGER.info("Avatar "+newAvatarPath+" deleted");
+            }
+            throw new ApplicationException("Can't create new comment: " + e.getMessage(), e);
+        }
     }
 }
