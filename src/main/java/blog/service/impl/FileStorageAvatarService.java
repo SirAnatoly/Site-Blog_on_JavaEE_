@@ -14,8 +14,6 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.UUID;
 
-
-
 public class FileStorageAvatarService implements AvatarService {
     private static final Logger LOGGER = LoggerFactory.getLogger(FileStorageAvatarService.class);
     private final String mediaDirParent;

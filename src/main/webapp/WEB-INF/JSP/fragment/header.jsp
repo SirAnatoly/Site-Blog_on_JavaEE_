@@ -3,7 +3,7 @@
 <div class="callout primary" style="margin:0;">
     <div class="row">
         <div class="large-6 medium-6 columns">
-            <h1>Blog name</h1>
+            <h1>Blog</h1>
         </div>
         <div class="large-6 medium-6 columns">
             <form action="/Site_Blog_on_JavaEE_war/search" method="get">

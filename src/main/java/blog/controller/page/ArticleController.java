@@ -27,9 +27,8 @@ public class ArticleController extends AbstractController {
             String id = StringUtils.split(requestUrl, "/")[1];
             Article article = getBusinessService().viewArticle(Integer.parseInt(id), requestUrl);
 
-
             if (article == null) {
-                resp.sendRedirect("http://localhost:8080/Site_Blog_on_JavaEE_war/error");
+                resp.sendRedirect("/Site_Blog_on_JavaEE_war/error");
             }
             else{
                 req.setAttribute("article", article);
@@ -43,7 +42,7 @@ public class ArticleController extends AbstractController {
             resp.sendRedirect(e.getUrl());
 
         }  catch (NumberFormatException | ArrayIndexOutOfBoundsException e) {
-            resp.sendRedirect("http://localhost:8080/Site_Blog_on_JavaEE_war/error");
+            resp.sendRedirect("/Site_Blog_on_JavaEE_war/error");
         }
     }
 }

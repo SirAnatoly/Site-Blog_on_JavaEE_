@@ -28,7 +28,7 @@ public class NewsController extends AbstractController {
             String categoryUrl = requestUrl.replace("/news", "");
             Category category = getBusinessService().findCategoryByUrl(categoryUrl);
             if (category==null){
-                resp.sendRedirect("http://localhost:8080/Site_Blog_on_JavaEE_war/error");
+                resp.sendRedirect("/Site_Blog_on_JavaEE_war/error");
                 return;
             }
 
