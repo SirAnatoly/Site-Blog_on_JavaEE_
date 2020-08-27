@@ -5,10 +5,7 @@ import java.sql.SQLException;
 import java.util.Properties;
 import javax.servlet.ServletContext;
 
-import blog.service.AvatarService;
-import blog.service.BusinessService;
-import blog.service.NotificationService;
-import blog.service.SocialService;
+import blog.service.*;
 import blog.utill.AppUtil;
 import org.apache.commons.dbcp2.BasicDataSource;
 import org.slf4j.Logger;
@@ -29,6 +26,7 @@ public class ServiceManager {
         } catch (SQLException e) {
             LOGGER.error("Close dataSource failed: "+e.getMessage(), e);
         }
+        notificationService.shutdown();
 
         LOGGER.info("ServiceManager instance destroyed");
 

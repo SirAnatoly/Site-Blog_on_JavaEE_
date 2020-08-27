@@ -4,6 +4,7 @@
 <%@ taglib prefix="fn" 	  		uri="http://java.sun.com/jsp/jstl/functions"%>
 
 <script src="https://apis.google.com/js/platform.js" async defer></script>
+<script type="text/javascript" src="//s7.addthis.com/js/300/addthis_widget.js#pubid=ra-5f478cf21a93e0c0"></script>
 
 <div class="article thumbnail">
     <c:set var="category" value="${CATEGORY_MAP[article.idCategory] }" />
@@ -21,12 +22,7 @@
         <div class="content">${article.content }</div>
         <%-- ----------------------------------------- Social buttons ----------------------------------------- --%>
         <div class="row columns social">
-            <img src="http://placehold.it/32x32?text=f" alt="social" />
-            <img src="http://placehold.it/32x32?text=t" alt="social" />
-            <img src="http://placehold.it/32x32?text=g" alt="social" />
-            <img src="http://placehold.it/32x32?text=f" alt="social" />
-            <img src="http://placehold.it/32x32?text=t" alt="social" />
-            <img src="http://placehold.it/32x32?text=g" alt="social" />
+            <div class="addthis_inline_share_toolbox"></div>
         </div>
         <br>
         <%-- ----------------------------------------- Comments section ----------------------------------------- --%>

@@ -8,12 +8,10 @@ import blog.entity.Comment;
 import blog.exception.ApplicationException;
 import blog.exception.RedirectToValidUrlException;
 import blog.form.CommentForm;
+import blog.form.ContactForm;
 import blog.model.Items;
 import blog.model.SocialAccount;
-import blog.service.AvatarService;
-import blog.service.BusinessService;
-import blog.service.NotificationService;
-import blog.service.SocialService;
+import blog.service.*;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 
@@ -21,9 +19,7 @@ import javax.sql.DataSource;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.SQLException;
-import java.sql.Timestamp;
 import java.util.List;
-import java.util.Locale;
 import java.util.Map;
 
 public class BusinessServiceImpl implements BusinessService{
@@ -159,6 +155,12 @@ public class BusinessServiceImpl implements BusinessService{
         String title = article.getTitle();
         String content = commentContent;
         notificationService.sendNotification(title, content);
+    }
+
+    @Override
+    public void createContactRequest(ContactForm form) {
+        String content =  "Name: " + form.getName()+"\n"+"email: "+form.getEmail()+"\n"+"message: "+form.getText();
+        notificationService.sendNotification("Notification from Blog", content);
     }
 
 }

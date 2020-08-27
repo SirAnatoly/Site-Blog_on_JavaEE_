@@ -4,7 +4,9 @@ import blog.entity.Article;
 import blog.entity.Category;
 import blog.entity.Comment;
 import blog.exception.RedirectToValidUrlException;
+import blog.exception.ValidateException;
 import blog.form.CommentForm;
+import blog.form.ContactForm;
 import blog.model.Items;
 
 import java.util.List;
@@ -33,4 +35,7 @@ public interface BusinessService {
     List<Comment> listComments(int id_article, int offset, int limit);
 
     Comment createComment(CommentForm form);
+
+    void createContactRequest(ContactForm form) throws ValidateException;
+
 }
