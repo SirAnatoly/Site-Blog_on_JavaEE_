@@ -32,54 +32,42 @@ The application is built on MVC design pattern.
 
 
 <h3>What does it do:</h3>
-- Displaying a list of article categories;
-- Displays a list of all articles sorted in descending order of creation time;
-- Displays a list of articles for the selected category, sorted in descending order of creation time;
-- Search for articles by keyword in the article title and its text. (For simplicity, we mean searching by the exact word or phrase);
-- Paginated display of information for the list of articles and search results;
-- Displaying information about an article and updating the page-view counter;
-- Integration with social services for sharing information about an article;
-- Load more comments to an article;
-- Writing a new comment to an article;
-- Authentication via social networks, as the simplest and most widely used method today, using the example of Google+;
-- Import a user profile (name, email, avatar) from Google+ when creating a comment;
-- Sending a notification about a new comment to the blog owner's email address;
-- Sending a Contact Form request to the blog owner's email address;
-- Error handling: 404, runtime errors, data validation;
-- Displaying simple pages using the about example.
+  <ul>
+    <li>Displaying a list of article categories;</li>
+    <li>Displays a list of all articles sorted in descending order of creation time;</li>
+    <li>Displays a list of articles for the selected category, sorted in descending order of creation time;</li>
+    <li>Search for articles by keyword in the article title and its text. (For simplicity, we mean searching by the exact word or phrase);</li>
+    <li>Paginated display of information for the list of articles and search results;</li>
+    <li>Displaying information about an article and updating the page-view counter;</li>
+    <li>Integration with social services for sharing information about an article;</li>
+    <li>Load more comments to an article;</li>
+    <li>Writing a new comment to an article;</li>
+    <li>Authentication via social networks, as the simplest and most widely used method today, using the example of Google+;</li>
+    <li>Import a user profile (name, email, avatar) from Google+ when creating a comment;</li>
+    <li>Sending a notification about a new comment to the blog owner's email address;</li>
+    <li>Sending a Contact Form request to the blog owner's email address;</li>
+    <li>Error handling: 404, runtime errors, data validation;</li>
+    <li>Displaying simple pages using the about example.</li>
+  </ul>
 
 <h2>Base Blog Props</h2>
  <h3>1) File: Site-Blog_on_JavaEE_/src/main/resources/application.properties</h3>
  
-db.driver=com.mysql.cj.jdbc.Driver
-
-db.url=jdbc:mysql://localhost:3306/Blog // Format
-
-db.username=**** // Format
-
-db.password=***** // Format
-
-db.pool.initSize=5
-
-db.pool.maxSize=10
-
-social.googleplus.clientId=***** // Format
-
-app.host=http://******* // Format
-
-email.notificationEmail=xxx@mail.com // Format
-
-email.sendTryCount=2
-
-email.smtp.server=smtp.mail.com
-
-email.smtp.port=465
-
-email.fromEmail=xxx@mail.com // Format
-
-email.smtp.username=xxx@mail.com // Format
-
-email.smtp.password=xxx{password application email} // Format 
+<p>db.driver=com.mysql.cj.jdbc.Driver </p>
+<p>db.url=jdbc:mysql://localhost:3306/Blog // Format</p>
+<p>db.username=**** // Format</p>
+<p>db.password=***** // Format</p>
+<p>db.pool.initSize=5</p>
+<p>db.pool.maxSize=10</p>
+<p>social.googleplus.clientId=***** // Format</p>
+<p>app.host=http://******* // Format</p>
+<p>email.notificationEmail=xxx@mail.com // Format</p>
+<p>email.sendTryCount=2</p>
+<p>email.smtp.server=smtp.mail.com</p>
+<p>email.smtp.port=465</p>
+<p>email.fromEmail=xxx@mail.com // Format</p>
+<p>email.smtp.username=xxx@mail.com // Format</p>
+<p>email.smtp.password=xxx{password application email} // Format </p>
 
 
 <h3>2) File: Site-Blog_on_JavaEE_/src/main/java/blog/Constants.java</h3>
