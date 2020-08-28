@@ -14,21 +14,15 @@
 
 
 <h3>Technologies </h3>
-
-Interface : HTML/CSS/JS/Bootstrap/jQuery.
-
-JavaEE: Servlets, JSP, JSTL.
-
-Apache Commons : dbcp2, lang3, dbutils, BeanUtils, email, validator.
-
-Database: MySql.
-
-Google OAuth.
-
-Maven, Logback.
-
-The application is built on MVC design pattern.
-
+  <ul>
+<li>Interface : HTML/CSS/JS/Bootstrap/jQuery.</li>
+<li>JavaEE: Servlets, JSP, JSTL.</li>
+<li>Apache Commons : dbcp2, lang3, dbutils, BeanUtils, email, validator.</li>
+<li>Database: MySql.</li>
+<li>Google OAuth.</li>
+<li>Maven, Logback.</li>
+<li>The application is built on MVC design pattern.</li>
+  </ul>
 
 
 <h3>What does it do:</h3>
